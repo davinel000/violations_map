@@ -3,7 +3,7 @@
 
 <head>
   <meta charset='utf-8' />
-  <title>Карта нарушений профессиональных прав адвокатов</title>
+  <title>"Карта нарушений профессиональных прав адвокатов"</title>
   <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
   <script src='https://api.mapbox.com/mapbox-gl-js/v2.0.1/mapbox-gl.js'></script>
@@ -96,7 +96,7 @@
     var map = new mapboxgl.Map({
       container: 'map', // container id
       style: 'mapbox://styles/davinel000/cknos923d1l3h17o1yndgd6j9', // YOUR TURN: choose a style: https://docs.mapbox.com/api/maps/#styles
-      center: [47.704715, 56.976929], // starting position [lng, lat]
+      center: [0.0,0.0], // starting position [lng, lat] [47.704715, 56.976929]
       zoom: 6,// starting zoom
       transformRequest: transformRequest
     });
@@ -105,7 +105,7 @@
       $.ajax({
         type: "GET",
         //YOUR TURN: Replace with csv export link
-        url: 'https://docs.google.com/spreadsheets/d/1S6dYYwtkImP20o5Hgc5HkVUABEy3koririGihSYfV6Y/gviz/tq?tqx=out:csv&sheet=violations',
+        url: 'https://docs.google.com/spreadsheets/d/1LyeTdOvbHFoqnteYxYc7uML_ERsylJ-X1o9FYpbOnCY/gviz/tq?tqx=out:csv&sheet=january21',
         dataType: "text",
         success: function (csvData) { makeGeoJSON(csvData); }
       });
@@ -116,11 +116,11 @@
         csv2geojson.csv2geojson(csvData, {
           latfield: 'Latitude',
           lonfield: 'Longitude',
-          delimiter: ','
+          delimiter: '.'
         }, function (err, data) {
           map.on('load', function () {
 
-            //Add the the layer to the map
+            //Add the layer to the map
             map.addLayer({
               'id': 'csvData',
               'type': 'circle',
@@ -143,7 +143,7 @@
               //set popup text
               //You can adjust the values of the popup to match the headers of your CSV.
               // For example: e.features[0].properties.Name is retrieving information from the field Name in the original CSV.
-              var description = `<h3>` + e.features[0].properties.violationType + `</h3>` + `<h4>` + `<b>` + `Защитник: ` + `</b>` + e.features[0].properties.Name1 + `</h4>` + `<h4>` + `<b>` +'Подзащитный: ' + `</b>` + `Phone: `  + e.features[0].properties.location + `</h4>`;
+              var description = `<h3>` + e.features[0].properties.Date + `</h3>` + `<h4>` + `<b>` + `Защитник: ` + `</b>` + e.features[0].properties.Lawyer + `</h4>` + `<h4>`+`Место: `  + e.features[0].properties.Place + `</h4>`+  `<b>` +'Обстоятельства: ' + `</b>` + e.features[0].propertiex.Violation;
 
               // Ensure that if the map is zoomed out such that multiple
               // copies of the feature are visible, the popup appears
