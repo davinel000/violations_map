@@ -105,7 +105,7 @@
       $.ajax({
         type: "GET",
         //YOUR TURN: Replace with csv export link
-        url: 'https://docs.google.com/spreadsheets/d/1LyeTdOvbHFoqnteYxYc7uML_ERsylJ-X1o9FYpbOnCY/gviz/tq?tqx=out:csv&sheet=january21',
+        url: 'https://docs.google.com/spreadsheets/d/1S6dYYwtkImP20o5Hgc5HkVUABEy3koririGihSYfV6Y/gviz/tq?tqx=out:csv&sheet=violations',
         dataType: "text",
         success: function (csvData) { makeGeoJSON(csvData); }
       });
@@ -116,21 +116,21 @@
         csv2geojson.csv2geojson(csvData, {
           latfield: 'Latitude',
           lonfield: 'Longitude',
-          delimiter: ','
+          delimiter: '.'
         }, function (err, data) {
           map.on('load', function () {
 
             //Add the layer to the map
             map.addLayer({
               'id': 'csvData',
-              'type': 'square',
+              'type': 'circle',
               'source': {
                 'type': 'geojson',
                 'data': data
               },
               'paint': {
                 'circle-radius': 5,
-                'circle-color': "red"
+                'circle-color': "purple"
               }
             });
 
