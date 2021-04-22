@@ -96,7 +96,7 @@
     var map = new mapboxgl.Map({
       container: 'map', // container id
       style: 'mapbox://styles/davinel000/cknos923d1l3h17o1yndgd6j9', // YOUR TURN: choose a style: https://docs.mapbox.com/api/maps/#styles
-      center: [0.0,0.0], // starting position [lng, lat] [47.704715, 56.976929]
+      center: [47.704715, 56.976929], // starting position [lng, lat] [47.704715, 56.976929]
       zoom: 6,// starting zoom
       transformRequest: transformRequest
     });
@@ -123,14 +123,14 @@
             //Add the layer to the map
             map.addLayer({
               'id': 'csvData',
-              'type': 'circle',
+              'type': 'square',
               'source': {
                 'type': 'geojson',
                 'data': data
               },
               'paint': {
                 'circle-radius': 5,
-                'circle-color': "purple"
+                'circle-color': "red"
               }
             });
 
