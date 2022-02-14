@@ -92,7 +92,11 @@
               //set popup text
               //You can adjust the values of the popup to match the headers of your CSV.
               // For example: e.features[0].properties.Name is retrieving information from the field Name in the original CSV.
+<<<<<<< HEAD
               var description = `<h3>` + e.features[0].properties.Date + `</h3>` + `<h4>` + `<b>` + `Защитник: ` + `</b>` + e.features[0].properties.Lawyer + `</h4>` + `<h4>` + `Место: ` + e.features[0].properties.Place + `</h4>` + `<b>` + 'Обстоятельства: ' + `</b>` + e.features[0].properties.Violation;
+=======
+              var description = `<h3>` + e.features[0].properties.Date + `</h3>` + `<h4>` + `<b>` + `Защитник: ` + `</b>` + e.features[0].properties.Lawyer + `</h4>` + `<h4>`+`Место: `  + e.features[0].properties.Place + `</h4>`+  `<b>` +'Обстоятельства: ' + `</b>` + e.features[0].propertiex.Violation;
+>>>>>>> parent of dfa2000 (Update index.html)
 
               // Ensure that if the map is zoomed out such that multiple
               // copies of the feature are visible, the popup appears
@@ -116,7 +120,7 @@
 
             // Change it back to a pointer when it leaves.
             map.on('mouseleave', 'places', function () {
-              map.getCanvas().style.cursor = '';
+              map.getCanvas().style.cursor = 'arrow';
             });
 
             var bbox = turf.bbox(data);
